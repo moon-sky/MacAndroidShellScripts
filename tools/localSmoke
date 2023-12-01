@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# 读取文件内容并存放到数组中
+file_contents=()
+while read line; do
+    file_contents+=("$line")
+done < "$1"
+adb shell am broadcast -a xiaopeng.intent.action.UI_MIC_CLICK
+
+# 遍历数组并打印内容和剩余未遍历数组数据的个数
+for (( i=0; i<${#file_contents[@]}; i++ )); do
+    echo "${file_contents[$i]}"
+	sleep 2
+    adb shell am broadcast -a carspeechservice.ACTION_SEND_TEXT --ei soundArea 1 --es text "${file_contents[$i]}"
+    sleep 5
+    remaining=$(( ${#file_contents[@]} - $i - 1 ))
+    echo "剩余未遍历数组数据的个数: $remaining"
+done
+
+
+echo "结束了"

@@ -1,0 +1,3 @@
+#!/bin/bash
+#进入调试页面
+adb shell am start -a carspeechservice.action.debug

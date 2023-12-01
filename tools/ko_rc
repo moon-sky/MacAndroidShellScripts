@@ -1,0 +1,19 @@
+# !/bin/bash
+while true; do
+# 获取ResourceCenter进程ID
+pid_resource=$(adb shell ps | grep -w "com.xiaopeng.speech.resourcecenter" | awk '{print $2}')
+
+
+# 如果进程ID不为空，则kill进程
+if [[ -n "$pid_resource" ]]; then
+    adb shell kill "$pid_resource"
+    echo "已关闭carspeechservice resourcecenter进程，进程ID为$pid_resource"
+else
+    echo "未找到resourcecenter进程"
+fi
+
+    # 检查用户是否按下回车键
+    if read -t 0; then
+        break
+    fi
+done

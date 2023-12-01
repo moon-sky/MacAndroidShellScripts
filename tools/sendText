@@ -1,0 +1,23 @@
+# !/bin/bash 
+#该脚本用于方便大家发送sendText广播，模拟用户输入
+
+# 检查是否传递了参数
+if [ $# -eq 0 ]; then
+  echo "请输入参数，例如：sendText 你好 #soundArea#"
+  exit 1
+elif [ $# -eq 1 ]; then
+  keyword="$1"
+  soundArea="1"
+elif [ $# -eq 2 ]; then
+  keyword="$1"
+  soundArea="$2"
+fi
+
+# 检查参数是否为空
+if [ -z "$1" ]; then
+  echo "参数不能为空"
+  exit 1
+fi                                                 
+echo "sendText:$1"                                   
+adb shell am broadcast -a carspeechservice.ACTION_SEND_TEXT --ei soundArea $soundArea --es text $keyword
+ 

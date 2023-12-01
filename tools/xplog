@@ -1,0 +1,41 @@
+# !/bin/bash
+
+# 检查是否传递了参数
+if [ $# -eq 0 ]; then
+  echo "请输入参数，例如xplog /downloads/hello.xp"
+  exit 1
+fi
+
+# 检查参数是否为空
+if [ -z "$1" ]; then
+  echo "参数不能为空"
+  exit 1
+fi
+# 判断字符串中是否包含 '.xp'
+if [[ $1 == *".xp"* ]]; then
+  # 将 '.xp' 替换成 '.zip'，并赋值给另一个变量
+  zip_path=${1//.xp/.zip}
+  # 去掉字符串中的 '.xp'
+  dir_path=${zip_path//.zip/}
+  echo "处理后的字符串为：$zip_path $dir_path"
+else
+  echo "输入的字符串中不包含 '.xp'"
+  exit 1
+fi                                                 
+
+echo "开始解密"
+
+#路径替换成自己的解压缩jar路径
+
+java -jar /Users/wanghx2/Downloads/decryptFile.jar $1
+
+echo "解密结束，开始解压"
+                                  
+echo "解压路径 $dir_path"
+
+unzip -o $zip_path -d $dir_path
+
+echo "解压结束,打开日志目录"
+open $dir_path/Log
+
+exit 0                                       

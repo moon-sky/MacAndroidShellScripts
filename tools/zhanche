@@ -1,0 +1,8 @@
+#!/bin/bash
+# 该脚本用于进入展车模式
+adb shell vdt logctrl SIGNALLOST 0
+adb shell vdt rp VCU_EVSYS_READYST 0
+adb shell vdt rp VCU_EXHIB_MODE_SW 1
+adb shell vdt rp VCU_CURRENT_GEARLEV 4
+adb shell settings put system exhibition_sw 1
+echo "进入展车模式了"

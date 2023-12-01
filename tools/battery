@@ -1,0 +1,9 @@
+# !/bin/bash
+
+#该脚本用于设置模拟电量
+
+adb shell vdt disableMCU 1
+adb shell vdt reportprop VCU_RANDIS_MODE 1
+adb shell vdt reportprop VCU_DSTBAT_DISP_WLTP_FLOAT 300
+adb shell vdt reportprop VCU_BMS_SOCDISP 80                    
+echo "电量已设置"                                   

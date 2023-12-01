@@ -1,0 +1,25 @@
+# !/bin/bash                                 
+
+# 检查是否传递了参数
+if [ $# -eq 0 ]; then
+  echo "请输入参数，例如:档位 P档\D档 "
+  exit 1
+fi
+
+# 检查参数是否为空
+if [ -z "$1" ]; then
+  echo "参数不能为空"
+  exit 1
+fi
+# 判断字符串中是否包含 '.xp'
+if [[ $1 == *"P"* ]]; then
+  adb shell vdt logctrl SIGNALLOST 0
+  adb shell vdt rp VCU_CURRENT_GEARLEV 4                           
+  echo "P档已设置"
+else
+  adb shell vdt logctrl SIGNALLOST 0
+  adb shell vdt rp VCU_CURRENT_GEARLEV 1                           
+  echo "D档已设置" 
+  exit 1
+fi 
+                                   

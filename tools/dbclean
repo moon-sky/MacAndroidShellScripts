@@ -1,0 +1,9 @@
+#!/bin/bash
+#该脚本用于方便清理资源中心数据
+
+echo "---------------开始清理资源中心数据---------------"
+adb root
+adb remount
+adb shell rm -rf /system/etc/carspeech/assets/ngc/
+adb shell rm -rf /sdcard/Android/data/com.xiaopeng.speech.resourcecenter/files/databases/ 
+exit

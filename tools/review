@@ -1,0 +1,22 @@
+# !/bin/bash 
+# 方便review，减少输入 git review 
+
+# 检查是否安装了git-review
+if ! command -v git-review &> /dev/null
+then
+    echo "git-review未安装，请先安装git-review"
+    exit
+fi
+
+# 检查是否在git仓库中
+if ! git rev-parse --is-inside-work-tree &> /dev/null
+then
+    echo "当前不在git仓库中，请进入git仓库后再运行"
+    exit
+fi
+
+# 获取当前分支名
+branch=$(git branch --show-current)
+
+# 使用git review提交代码
+git review $branch                                                 

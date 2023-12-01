@@ -1,0 +1,2 @@
+#!/bin/bash
+java -jar /Users/wanghx2/Downloads/LogViewer-2.4-all.jar

@@ -1,0 +1,25 @@
+#!/bin/bash
+#该脚本用于本地对话有修改，需要快速打包验证,需要替换下面的工程路径
+# 检查是否传递了参数
+if [ $# -eq 0 ]; then
+  echo "请输入参数，例如：local E38"
+  exit 1
+fi
+
+# 检查参数是否为空
+if [ -z "$1" ]; then
+  echo "参数不能为空"
+  exit 1
+fi
+echo "---------------构建本地对话sdk---------------"
+cd ~/Develop/LocalDialogEngine
+./gradlew :lib_dialog_engine:assemble$1Debug
+echo "---------------发布本地对话sdk---------------"
+./gradlew :lib_dialog_engine:publish
+echo "---------------构建语音包并安装---------------"
+cd ~/Develop/CarSpeechservice_e28
+./gradlew clean
+./gradlew :app:main:install$1Debug
+echo "---------------启动----------------"
+adb shell am start com.xiaopeng.carspeechservice/.launcher.LaunchActivity
+exit

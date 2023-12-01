@@ -1,0 +1,55 @@
+#!/bin/bash
+#该脚本用于方便清理资源中心数据
+
+echo "---------------删除已有NGC资源---------------"
+adb root
+adb remount
+adb shell rm -rf /system/etc/carspeech/assets/ngc/
+adb shell rm -rf /sdcard/Android/data/com.xiaopeng.speech.resourcecenter/files/databases/
+echo "---------------清理数据完毕---------------" 
+
+#获取语音进程好，方便kill 重启
+echo "---------------重启语音进程---------------" 
+# 获取carspeechservice进程ID
+pid=$(adb shell ps | grep -wEi "com.xiaopeng.carspeechservice$" | awk '{print $2}')
+pid_resource=$(adb shell ps | grep -w "com.xiaopeng.speech.resourcecenter" | awk '{print $2}')
+
+# 如果进程ID不为空，则kill进程
+if [[ -n "$pid" ]]; then
+    adb shell kill "$pid"
+    echo "已关闭carspeechservice进程，进程ID为$pid"
+else
+    echo "未找到carspeechservice进程"
+fi
+
+# 如果进程ID不为空，则kill进程
+if [[ -n "$pid_resource" ]]; then
+    adb shell kill "$pid_resource"
+    echo "已关闭carspeechservice resourcecenter进程，进程ID为$pid_resource"
+else
+    echo "未找到resourcecenter进程"
+fi
+echo "---------------开始下载资源---------------"
+adb logcat -c
+
+adb logcat -s ResourceManager| while IFS= read -r line
+do
+  if echo "$line" | grep -q "MSG_DOWNLOAD_ALL_RESOURCE DONE"; then
+    echo "---------------资源下载完成，开始导出---------------"
+      # 指定要拉取的文件路径
+    file_path="/sdcard/Android/data/com.xiaopeng.speech.resourcecenter/files/databases/"
+
+    # 使用adb pull命令拉取文件
+    adb pull "$file_path" .
+
+    # 检查adb pull命令的退出状态
+    if [ $? -eq 0 ]; then
+      echo "文件成功拉取到当前目录。"
+    else
+      echo "文件拉取失败。"
+    fi
+    break
+  fi
+done
+#退出当前脚本
+exit 0

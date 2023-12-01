@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Get the directory of this script
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+if [ $# -eq 0 ]; then
+  keyword="default"
+  if [ -f "$SCRIPT_DIR/busiOwner.txt" ]; then
+    file="$SCRIPT_DIR/busiOwner.txt"
+  else
+    echo "Error: busiOwner.txt does not exist or is not a file"
+    exit 1
+  fi
+elif [ $# -eq 1 ]; then
+  keyword="$1"
+  if [ -f "$SCRIPT_DIR/busiOwner.txt" ]; then
+    file="$SCRIPT_DIR/busiOwner.txt"
+  else
+    echo "Error: busiOwner.txt does not exist or is not a file"
+    exit 1
+  fi
+elif [ $# -eq 2 ]; then
+  keyword="$1"
+  file="$2"
+else
+  echo "Usage: $0 [keyword [file]]"
+  exit 1
+fi
+
+if [ ! -f "$file" ]; then
+  echo "Error: $file does not exist or is not a file"
+  exit 1
+fi
+
+grep -n "$keyword" "$file" | while read line; do
+  linenum=$(echo "$line" | cut -d: -f1)
+  text=$(echo "$line" | cut -d: -f2-)
+  echo "Line $linenum: $text"
+done

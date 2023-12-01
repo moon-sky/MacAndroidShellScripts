@@ -1,0 +1,4 @@
+# !/bin/bash
+#快速提交代码                                                  
+git add .
+git commit

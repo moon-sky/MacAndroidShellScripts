@@ -1,0 +1,14 @@
+#!/bin/bash
+#配置预发环境脚本，用于登录个人中心，把预发环境文件的路径以及XpFactoryTest的目录改成自己的
+echo "push 预发环境配置文件"
+adb push /Users/wanghx2/Downloads/pre_env.ini /sdcard/
+echo "执行 push apk操作"
+adb shell mkdir system/priv-app/XpFactoryTest/                        
+adb shell mkdir system/priv-app/XpFactoryTest/lib/
+adb shell mkdir system/priv-app/XpFactoryTest/lib/arm64/
+adb shell rm -rf /system/priv-app/XpFactoryTest/oat/
+adb push /Users/wanghx2/Downloads/factorytest/XpFactoryTest.apk /system/priv-app/XpFactoryTest/
+adb push /Users/wanghx2/Downloads/factorytest/lib/arm64/libpso.so system/priv-app/XpFactoryTest/lib/arm64/
+adb push /Users/wanghx2/Downloads/factorytest/lib/arm64/libXpPso.so system/priv-app/XpFactoryTest/lib/arm64/
+adb push /Users/wanghx2/Downloads/factorytest/lib/arm64/libudsSecurityLuaEnc.so system/priv-app/XpFactoryTest/lib/arm64/
+adb shell rm -rf /data/app/com.xiaopeng.factory*

@@ -1,0 +1,16 @@
+# !/bin/bash                                 
+# 检查是否传递了参数
+if [ $# -eq 0 ]; then
+  echo "请输入参数，例如：调速 130"
+  exit 1
+fi
+
+# 检查参数是否为空
+if [ -z "$1" ]; then
+  echo "参数不能为空"
+  exit 1
+fi
+adb shell vdt logctrl SIGNALLOST 0
+adb shell vdt rp VCU_RAW_CAR_SPEED  $1                        
+echo "车速已设置为$1"
+exit 0                                   

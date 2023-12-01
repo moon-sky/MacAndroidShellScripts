@@ -1,0 +1,16 @@
+#!/bin/bash
+# 该脚本用于安装apk
+# 检查是否传递了参数
+if [ $# -eq 0 ]; then
+  echo "请输入参数，例如：apk /downloads/car.apk"
+  exit 1
+fi
+
+# 检查参数是否为空
+if [ -z "$1" ]; then
+  echo "参数不能为空"
+  exit 1
+fi
+
+adb install -r -t $1
+echo "安装完成"

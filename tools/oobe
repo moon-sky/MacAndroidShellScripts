@@ -1,0 +1,6 @@
+#!/bin/bash
+#清除oobe数据，并启动oobe，用于测试oobe流程
+adb shell pm clear com.xiaopeng.napa
+adb shell pm clear com.xiaopeng.oobe
+adb shell pm enable com.xiaopeng.oobe/.OOBEActivity
+adb shell am start -n com.xiaopeng.oobe/.OOBEActivity

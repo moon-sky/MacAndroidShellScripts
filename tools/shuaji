@@ -1,0 +1,6 @@
+#!/bin/bash
+# 刷机前置命令
+adb root
+adb shell vdt setprop MCU_STOP_MONITOR 1 0
+adb reboot edl
+echo 开始重启

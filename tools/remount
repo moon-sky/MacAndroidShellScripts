@@ -1,0 +1,6 @@
+#!/bin/bash
+
+adb root
+
+adb remount
+echo ‘remount done’

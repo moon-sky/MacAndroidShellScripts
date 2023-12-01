@@ -1,0 +1,7 @@
+#!/bin/bash
+adb root
+echo root done
+adb disable-verity
+echo verity done
+adb reboot
+echo reboot done

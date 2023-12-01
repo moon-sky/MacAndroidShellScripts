@@ -1,0 +1,56 @@
+# !/bin/bash                                 
+echo "高配车型开始配置"
+adb shell setprop persist.sys.xiaopeng.debug.cfc 1
+adb shell setprop persist.sys.xiaopeng.cfcVehicleLevel 4
+adb shell setprop persist.sys.xiaopeng.RDM 1
+adb shell setprop persist.sys.xiaopeng.SRS 1
+adb shell setprop persist.sys.xiaopeng.ESP 1
+adb shell setprop persist.sys.xiaopeng.EPS 1
+adb shell setprop persist.sys.xiaopeng.IBT 1
+adb shell setprop persist.sys.xiaopeng.IPUR 1
+adb shell setprop persist.sys.xiaopeng.BMS 1
+adb shell setprop persist.sys.xiaopeng.OBC_DCDC 1
+adb shell setprop persist.sys.xiaopeng.ATLS 1
+adb shell setprop persist.sys.xiaopeng.AQS 1
+adb shell setprop persist.sys.xiaopeng.LLU 1
+adb shell setprop persist.sys.xiaopeng.LSU 1
+adb shell setprop persist.sys.xiaopeng.MSB 1
+adb shell setprop persist.sys.xiaopeng.MIRROR 1
+adb shell setprop persist.sys.xiaopeng.ATL_NUMBER 17
+adb shell setprop persist.sys.xiaopeng.MSD 1
+adb shell setprop persist.sys.xiaopeng.MSP 1
+adb shell setprop persist.sys.xiaopeng.LUMBAR_SUP 1
+adb shell setprop persist.sys.xiaopeng.XPU 1
+adb shell setprop persist.sys.xiaopeng.AVM 1
+adb shell setprop persist.sys.xiaopeng.SRR_RL 1
+adb shell setprop persist.sys.xiaopeng.SRR_RR 1
+adb shell setprop persist.sys.xiaopeng.SRR_FL 1
+adb shell setprop persist.sys.xiaopeng.SRR_FR 1
+adb shell setprop persist.sys.xiaopeng.IMU 1
+adb shell setprop persist.sys.xiaopeng.SEAT_HEAT 1
+adb shell setprop persist.sys.xiaopeng.SEAT_VENT 1
+adb shell setprop persist.sys.xiaopeng.CWC 1
+adb shell setprop persist.sys.xiaopeng.AS 1
+adb shell setprop persist.sys.xiaopeng.driveway 1
+adb shell setprop persist.sys.xiaopeng.Package1 1
+adb shell setprop persist.sys.xiaopeng.SPEAKER 20
+adb shell setprop persist.sys.xiaopeng.SFS 1
+adb shell setprop persist.sys.xiaopeng.AMP 1
+adb shell setprop persist.sys.xiaopeng.ATL_18 1
+adb shell setprop persist.sys.xiaopeng.ATL_19 1
+adb shell setprop persist.sys.xiaopeng.TBOX_5G_A 1
+adb shell setprop persist.sys.xiaopeng.TBOX_4G 0
+adb shell setprop persist.sys.xiaopeng.SHC 1
+adb shell setprop persist.sys.xiaopeng.LEG_SUP 1
+adb shell setprop persist.sys.xiaopeng.SWS_HEAT 1
+adb shell setprop persist.sys.xiaopeng.SEAT_MASS 1
+adb shell setprop persist.sys.xiaopeng.MAKEUP_MIRROR 1
+adb shell setprop persist.sys.xiaopeng.DOLBY 1
+adb shell setprop persist.sys.xiaopeng.RSEAT_HEAT 1
+adb shell setprop persist.sys.xiaopeng.Package2 1
+adb shell setprop persist.sys.xiaopeng.Lidar_F 1
+adb shell setprop persist.sys.xiaopeng.Lidar_R 1
+adb shell setprop persist.sys.xiaopeng.ETC 1
+adb shell setprop persist.sys.xiaopeng.TTM 1
+adb reboot
+echo "高配车型结束配置"

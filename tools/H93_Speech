@@ -1,0 +1,9 @@
+#!/bin/bash
+#该脚本用于在自动构建资源中心与语音APK并安装
+cd ~/Develop/CarSpeechservice_e28
+echo "---------------构建语音包并安装---------------"
+./gradlew clean
+./gradlew :app:main:installH93Debug
+echo "---------------启动----------------"
+adb shell am start com.xiaopeng.carspeechservice/.launcher.LaunchActivity
+exit

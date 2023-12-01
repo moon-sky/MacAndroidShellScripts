@@ -1,0 +1,3 @@
+#!/bin/bash
+#按键唤醒
+adb shell am broadcast -a xiaopeng.intent.action.UI_MIC_CLICK
